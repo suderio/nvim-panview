@@ -24,6 +24,10 @@ end
 function Convert_to_markdown(filepath, filetype)
     local cmd = string.format("pandoc -f %s -t markdown %s", filetype, vim.fn.shellescape(filepath))
     local handle = io.popen(cmd)
+    if handle == nil then
+      vim.notify(string.format("Error when calling %s", cmd), vim.log.levels.ERROR)
+      return
+    end
     local result = handle:read("*a")
     handle:close()
     return result
