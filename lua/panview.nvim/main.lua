@@ -52,3 +52,13 @@ function Open_side_buffer(content)
 	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 	vim.api.nvim_buf_set_option(buf, "swapfile", false)
 end
+
+function Is_pandoc_installed()
+	local handle = io.popen("pandoc --version")
+	if handle then
+		local result = handle:read("*a")
+		handle:close()
+		return result and result ~= ""
+	end
+	return false
+end

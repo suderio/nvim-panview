@@ -68,4 +68,25 @@ function M.panview_file(args)
 	main.Open_side_buffer(markdown)
 end
 
+--- Perform a health check for the PanView plugin.
+function M.check_health()
+	local health = vim.health or require("vim.health") -- Ensure compatibility with older Neovim versions
+
+	health.start("PanView Health Check")
+
+	if main.Is_pandoc_installed() then
+		health.ok("Pandoc is installed and accessible.")
+	else
+		health.error("Pandoc is not installed or not in the PATH. Please install Pandoc to use this plugin.")
+	end
+end
+
+if vim.fn.has("nvim-0.9") == 1 then
+	vim.api.nvim_create_autocmd("VimEnter", {
+		callback = function()
+			require("panview").check_health()
+		end,
+	})
+end
+
 return M
