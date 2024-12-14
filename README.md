@@ -1,2 +1,4 @@
-## nvim-panview
-This is the README for nvim-panview
+## panview.nvim
+
+This is the README for panview.nvim
+

@@ -1,4 +1,4 @@
-if exists('g:loaded_nvim-panview') | finish | endif
+if exists('g:loaded_panview.nvim') | finish | endif
 
 " expose vim commands and interface here
 " nnoremap <Plug>PlugCommand :lua require(...).plug_command()<CR>
@@ -6,7 +6,7 @@ if exists('g:loaded_nvim-panview') | finish | endif
 let s:save_cpo = &cpo
 set cpo&vim
 
-let g:loaded_nvim-panview = 1
+let g:loaded_panview.nvim = 1
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
